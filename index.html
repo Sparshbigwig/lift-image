@@ -3,22 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signet Notices</title>
+  <title>Signet Lift Notices</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
-    #slider { width: 100vw; height: 100vh; object-fit: contain; display: block; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000000;
+    }
+    #slider {
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+      display: block;
+    }
   </style>
 </head>
 <body>
-  <img id="slider" src="slide1.jpg" alt="Notice">
+
+  <img id="slider" src="BINTEX.jpg" alt="Notice">
+
   <script>
-    const slides = ['slide1.jpg', 'slide2.jpg'];
+    // List of uploaded notice image files
+    const slides = [
+      'BINTEX.jpg',
+      'BOD26.jpg',
+      'Sgnet Lift Power failure Caution Poster.jpg',
+      'Signet BOD Notice on Sale of Flat.jpg',
+      'Signet Water Saving.jpg'
+    ];
     let idx = 0;
     const img = document.getElementById('slider');
+
+    // Cycle slide every 10 seconds
     setInterval(() => {
       idx = (idx + 1) % slides.length;
-      img.src = slides[idx];
+      img.src = encodeURI(slides[idx]);
     }, 10000);
   </script>
 </body>
