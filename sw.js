@@ -2,11 +2,11 @@ const CACHE_NAME = 'signet-notices-v1';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './BINTEX.jpg',
-  './BOD26.jpg',
-  './Sgnet Lift Power failure Caution Poster.jpg',
-  './Signet BOD Notice on Sale of Flat.jpg',
-  './Signet Water Saving.jpg'
+  './BINTEX.jpeg',
+  './BOD26.jpeg',
+  './Sgnet Lift Power failure Caution Poster.jpeg',
+  './Signet BOD Notice on Sale of Flat.jpeg',
+  './Signet Water Saving.jpeg'
 ];
 
 // Pre-cache all files into internal memory on first load
