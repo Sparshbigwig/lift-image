@@ -29,7 +29,6 @@
   <img id="slider" src="BINTEX.jpg" alt="Notice">
 
   <script>
-    // List of uploaded notice image files
     const slides = [
       'BINTEX.jpeg',
       'BOD26.jpeg',
@@ -45,6 +44,19 @@
       idx = (idx + 1) % slides.length;
       img.src = encodeURI(slides[idx]);
     }, 10000);
+
+    // Register Service Worker for offline persistent storage
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((registration) => {
+            console.log('Offline cache successfully active:', registration.scope);
+          })
+          .catch((error) => {
+            console.error('Service Worker registration failed:', error);
+          });
+      });
+    }
   </script>
 </body>
 </html>
