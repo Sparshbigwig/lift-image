@@ -16,17 +16,25 @@
       overflow: hidden;
       background-color: #000000;
     }
-    #slider {
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
       object-fit: contain;
       display: block;
+      visibility: hidden;
+    }
+    .active {
+      visibility: visible;
     }
   </style>
 </head>
 <body>
 
-  <img id="slider" src="BINTEX.jpeg" alt="Notice">
+  <img id="imgA" class="slide active" src="BINTEX.jpeg" alt="Notice">
+  <img id="imgB" class="slide" src="BOD26.jpeg" alt="Notice">
 
   <script>
     const slides = [
@@ -36,13 +44,33 @@
       'Signet BOD Notice on Sale of Flat.jpeg',
       'Signet Water Saving.jpeg'
     ];
-    let idx = 0;
-    const img = document.getElementById('slider');
 
-    // Cycle slide every 10 seconds
+    // Preload all slides into memory so Tizen decoder doesn't lag
+    slides.forEach((src) => {
+      const p = new Image();
+      p.src = encodeURI(src);
+    });
+
+    let currentIdx = 0;
+    let showingA = true;
+    const imgA = document.getElementById('imgA');
+    const imgB = document.getElementById('imgB');
+
+    // Cycle slide every 10 seconds without dropping to blank
     setInterval(() => {
-      idx = (idx + 1) % slides.length;
-      img.src = encodeURI(slides[idx]);
+      currentIdx = (currentIdx + 1) % slides.length;
+      const nextSrc = encodeURI(slides[currentIdx]);
+
+      if (showingA) {
+        imgB.src = nextSrc;
+        imgB.classList.add('active');
+        imgA.classList.remove('active');
+      } else {
+        imgA.src = nextSrc;
+        imgA.classList.add('active');
+        imgB.classList.remove('active');
+      }
+      showingA = !showingA;
     }, 10000);
 
     // Register Service Worker for offline persistent storage
